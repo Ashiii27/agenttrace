@@ -24,8 +24,9 @@ site/
 .env
 *.pem
 *.key
-data/
-blobs/
+/data/
+runs/
+/blobs/
 *.jsonl
 !docs/examples/*.jsonl
 

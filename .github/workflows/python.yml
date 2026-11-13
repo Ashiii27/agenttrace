@@ -1,0 +1,33 @@
+name: python
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ["sdk/python/**", "demo/**", "schema/**", ".github/workflows/python.yml"]
+  push:
+    branches: [main]
+    paths: ["sdk/python/**", "demo/**", "schema/**", ".github/workflows/python.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e "sdk/python[langchain,dev]"
+      - run: ruff check sdk/python demo
+      - run: ruff format --check sdk/python demo
+      - run: pytest sdk/python/tests demo/vuln-agent -q
+      - name: Demo attack end to end
+        run: |
+          python demo/vuln-agent/agent.py --out runs
+          agenttrace verify runs/s_*
