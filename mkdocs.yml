@@ -1,6 +1,7 @@
 site_name: AgentTrace
 site_description: A tamper-evident flight recorder for AI agents
 repo_url: https://github.com/Ashiii27/agenttrace
+site_url: https://ashiii27.github.io/agenttrace/
 docs_dir: docs
 strict: true
 

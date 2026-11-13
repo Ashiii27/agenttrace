@@ -40,6 +40,8 @@ agenttrace report  <session> --format md           # incident report with chain 
 
 ## Documentation
 
+Read online: **<https://ashiii27.github.io/agenttrace/>**
+
 | Document | What it covers |
 |---|---|
 | [Design](docs/design.md) | Architecture, components, attribution and replay |
