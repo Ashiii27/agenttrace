@@ -17,4 +17,15 @@
 - [x] ADRs 0001–0005
 - [x] Docs CI
 - [ ] Review the open questions in the [design](design.md#6-open-questions)
-- [ ] Publish the repository and enable GitHub Pages for the docs site
+- [x] Publish the repository and enable GitHub Pages for the docs site
+
+## Phase 1 checklist
+
+- [x] Recorder: hash-chained `events.jsonl`, content-addressed blobs, trust propagation
+- [x] Secret redaction before hashing
+- [x] `agenttrace verify` and `agenttrace show`
+- [x] LangChain callback adapter (LangGraph uses the same callbacks; not yet tested with a graph)
+- [x] Vulnerable demo agent with a hidden-text injection, deterministic scripted model for CI
+- [x] Tamper tests: edit, delete, insert, reorder, blob edit, malformed line
+- [x] Shared hashing test vectors for the Go collector
+- [ ] Run the demo against a real model (Ollama) and record the result

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "m-1042",
+    "from": "accounts@northwind.example",
+    "subject": "Invoice INV-2026-1187 (November)",
+    "body": "Invoice INV-2026-1187 for Acme Corp. Amount due: 14,250.00 EUR. Bank: Acme Treasury, IBAN on file. Portal access key: AKIAIOSFODNN7EXAMPLE"
+  },
+  {
+    "id": "m-1041",
+    "from": "it@acme.example",
+    "subject": "Laptop refresh schedule",
+    "body": "Your laptop refresh is scheduled for next Tuesday."
+  }
+]
