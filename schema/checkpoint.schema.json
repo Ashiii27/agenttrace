@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agenttrace:schema:v1:checkpoint",
+  "title": "AgentTrace checkpoint (v1)",
+  "description": "Collector-signed seal over a session's chain head. See docs/schema.md section 5.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "session_id", "seq", "head_hash", "received_at", "key_id", "sig"],
+  "properties": {
+    "schema": { "const": "agenttrace/v1/checkpoint" },
+    "session_id": { "type": "string", "pattern": "^s_[A-Za-z0-9]{6,64}$" },
+    "seq": { "type": "integer", "minimum": 0 },
+    "head_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "received_at": { "type": "string", "format": "date-time" },
+    "key_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "sig": {
+      "description": "Base64 Ed25519 signature over JCS(checkpoint without sig).",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+/]{86}==$"
+    }
+  }
+}

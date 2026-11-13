@@ -1,0 +1,46 @@
+site_name: AgentTrace
+site_description: A tamper-evident flight recorder for AI agents
+repo_url: https://github.com/Ashiii27/agenttrace
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle: { icon: material/brightness-7, name: Dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle: { icon: material/brightness-4, name: Light mode }
+
+nav:
+  - Home: index.md
+  - Design: design.md
+  - Threat model: threat_model.md
+  - Event schema: schema.md
+  - Decisions:
+      - adr/README.md
+      - adr/0001-record-architecture-decisions.md
+      - adr/0002-hash-chain-with-signed-checkpoints.md
+      - adr/0003-postgres-for-provenance-graph.md
+      - adr/0004-otel-genai-semantic-conventions.md
+      - adr/0005-layered-attribution.md
+      - adr/0000-template.md
+  - Roadmap: roadmap.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc: { permalink: true }
+  - pymdownx.superfences
+  - pymdownx.tasklist: { custom_checkbox: true }
+
+validation:
+  # Links that leave docs/ (e.g. ../schema/*.json) are checked by lychee instead.
+  links:
+    not_found: info
+    anchors: warn

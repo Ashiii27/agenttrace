@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agenttrace:schema:v1:event",
+  "title": "AgentTrace event (v1)",
+  "description": "One recorded step of an agent session. See docs/schema.md for hashing rules.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "session_id", "seq", "ts", "type", "actor", "inputs", "trust", "prev_hash", "hash"],
+  "properties": {
+    "schema": { "const": "agenttrace/v1" },
+    "session_id": { "type": "string", "pattern": "^s_[A-Za-z0-9]{6,64}$" },
+    "seq": { "type": "integer", "minimum": 0 },
+    "ts": { "type": "string", "format": "date-time" },
+    "type": {
+      "enum": [
+        "session.start",
+        "user.input",
+        "llm.request",
+        "llm.response",
+        "tool.call",
+        "tool.result",
+        "retrieval",
+        "chain.break",
+        "session.end"
+      ]
+    },
+    "actor": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "content_ref": { "$ref": "#/$defs/contentRef" },
+    "inputs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contentRef" },
+      "uniqueItems": true
+    },
+    "trust": { "enum": ["system", "user", "untrusted"] },
+    "attrs": { "type": "object" },
+    "prev_hash": { "$ref": "#/$defs/hexHash" },
+    "hash": { "$ref": "#/$defs/hexHash" }
+  },
+  "$defs": {
+    "hexHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "contentRef": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

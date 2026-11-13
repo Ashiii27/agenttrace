@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Go
+/collector/bin/
+*.test
+*.out
+
+# Node / UI
+node_modules/
+ui/dist/
+
+# Docs build
+site/
+
+# Secrets and local data — never commit recorded sessions or keys
+.env
+*.pem
+*.key
+data/
+blobs/
+*.jsonl
+!docs/examples/*.jsonl
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
