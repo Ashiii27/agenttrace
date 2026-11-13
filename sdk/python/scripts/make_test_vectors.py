@@ -60,7 +60,8 @@ def main() -> None:
         "genesis": genesis(SESSION),
         "events": events,
     }
-    OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    with OUT.open("w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(doc, indent=2, ensure_ascii=True) + "\n")
     print(f"wrote {OUT}")
 
 
