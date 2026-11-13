@@ -11,3 +11,4 @@ Process: see "Writing an ADR" in `CONTRIBUTING.md` at the repository root, and s
 | [0003](0003-postgres-for-provenance-graph.md) | Postgres (not a graph database) for the provenance graph | Accepted |
 | [0004](0004-otel-genai-semantic-conventions.md) | Align attributes with OpenTelemetry GenAI conventions | Accepted |
 | [0005](0005-layered-attribution.md) | Layered attribution: structural, lexical, counterfactual | Accepted |
+| [0006](0006-message-segments.md) | Message segments are canonical role + content | Accepted |

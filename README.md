@@ -11,8 +11,17 @@ AgentTrace answers two questions an incident responder actually needs answered:
 2. **Can I trust this record?** Every event is hash-chained and periodically sealed with a signed
    checkpoint stored off the agent host, so edits, deletions and reordering are detectable.
 
-> **Status:** design phase (week 0). No code yet — the design, threat model and event schema come
-> first. See the [roadmap](docs/roadmap.md).
+> **Status:** phase 1. The Python SDK records and verifies sessions locally; the collector,
+> signed checkpoints and attribution come next. See the [roadmap](docs/roadmap.md).
+
+## Try it in one minute
+
+```bash
+pip install -e "sdk/python[langchain]"
+python demo/vuln-agent/agent.py --out runs      # a hidden instruction on a web page hijacks the agent
+agenttrace show   runs/s_*                      # every step after the page is marked untrusted
+agenttrace verify runs/s_*                      # OK — now edit events.jsonl and run it again
+```
 
 ## How it works
 

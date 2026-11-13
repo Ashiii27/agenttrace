@@ -30,6 +30,7 @@ nav:
       - adr/0003-postgres-for-provenance-graph.md
       - adr/0004-otel-genai-semantic-conventions.md
       - adr/0005-layered-attribution.md
+      - adr/0006-message-segments.md
       - adr/0000-template.md
   - Roadmap: roadmap.md
 

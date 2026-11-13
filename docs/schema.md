@@ -80,6 +80,19 @@ prev_hash_i = hash_(i-1)
 - Content is **not** inside the event — only its `content_ref`. Because blobs are content-addressed,
   editing a blob changes its hash and breaks the reference.
 - Redaction happens **before** content is hashed ([threat model G4](threat_model.md#2-guarantees)).
+  A secret becomes `[REDACTED:<type>:<tag>]`, where `tag` is the first 8 hex characters of an
+  HMAC-SHA256 of the secret under a per-session key that is never stored.
+- Test vectors that pin these rules, including canonical-JSON edge cases, are in
+  [`schema/test-vectors/chain-v1.json`](https://github.com/Ashiii27/agenttrace/blob/main/schema/test-vectors/chain-v1.json).
+  Any implementation (the Go collector included) must reproduce them exactly.
+
+### Segments
+
+Content is stored as segments, one per message, document or tool output
+([ADR-0006](adr/0006-message-segments.md)). A message segment is
+`JCS({"role", "content"[, "tool_calls": [{"name", "args"}]]})` with roles `system`, `user`,
+`assistant` and `tool`. A tool result is stored as a `tool` message segment, so it has the same
+`content_ref` as the matching message in the next `llm.request`.
 
 ## 5. Checkpoint
 
